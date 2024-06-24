@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: '*.{js,mjs}' # glob filter for list of files
+      run: yarn lint
+commit-msg:
+  parallel: true
+  scripts:
+    "commitlint.sh":
+      runner: bash

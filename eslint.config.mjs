@@ -1,18 +1,19 @@
 // eslint.config.mjs
+import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import { includeIgnoreFile } from '@eslint/compat';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { defineConfig } from 'eslint';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const gitignorePath = path.resolve(__dirname, '.gitignore');
 
-export default defineConfig({
-  extends: [
-    // Base ESLint rules (consider using a shareable config like `eslint:recommended`)
-    'eslint:recommended',
-
-    // Prettier integration (should be last)
-    'prettier',
-  ],
-  plugins: ['prettier'],
-  // Disables any ESLint rules that conflict with Prettier formatting
-  rules: {
-    'prettier/prettier': ['error', { endOfLine: 'auto' }], // Adjust Prettier options as needed
+export default [
+  includeIgnoreFile(gitignorePath),
+  eslintConfigPrettier,
+  eslintPluginPrettierRecommended,
+  {
+    ignores: ['.yarn/'],
   },
-});
+];
