@@ -3,6 +3,7 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "vivaxy.vscode-conventional-commits",
-    "arcanis.vscode-zipfs"
+    "arcanis.vscode-zipfs",
+    "joshbolduc.commitlint"
   ]
 }
