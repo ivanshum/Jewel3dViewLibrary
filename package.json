@@ -3,24 +3,24 @@
   "type": "module",
   "main": "dist/j3dvl/index.cjs.js",
   "module": "dist/j3dvl/index.esm.js",
-  "browser": "dist/j3dvl/index.umd.js", 
+  "browser": "dist/j3dvl/index.umd.js",
   "private": true,
   "release": {
-      "branches": [
-        "main"
+    "branches": [
+      "main","ivanshum/issue3"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
       ],
-      "plugins": [
-        "@semantic-release/commit-analyzer",
-        "@semantic-release/release-notes-generator",
-        [
-          "@semantic-release/npm",
-          {
-            "npmPublish": false
-          }
-        ],
-        "@semantic-release/changelog",
-        "@semantic-release/github"
-      ]
+      "@semantic-release/changelog",
+      "@semantic-release/github"
+    ]
   },
   "scripts": {
     "lint": "eslint . --fix",
@@ -38,6 +38,9 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/release-notes-generator": "^14.0.1",
     "eslint": "9.x",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
