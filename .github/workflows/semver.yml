@@ -1,0 +1,24 @@
+name: test
+on:
+  push:
+    branches:
+      # Change this if your primary branch is not main
+      - main
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          dry_run: true
+          extra_plugins: |
+            @semantic-release/release-notes-generator
+            @semantic-release/changelog
+            @semantic-release/commit-analyzer
+            @semantic-release/git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

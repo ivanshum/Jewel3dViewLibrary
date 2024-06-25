@@ -4,6 +4,30 @@
   "main": "dist/j3dvl/index.cjs.js",
   "module": "dist/j3dvl/index.esm.js",
   "browser": "dist/j3dvl/index.umd.js",
+  "private": true,
+  "release": {
+    "branches": [
+      "main", {"name": "beta", "prerelease": true}, {"name": "alpha", "prerelease": true}
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false,
+          "tarballDir": "dist"
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "assets": "dist/*.*"
+        }
+      ]
+    ]
+  },
   "scripts": {
     "lint": "eslint . --fix",
     "build": "rollup -c",
@@ -20,12 +44,16 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/release-notes-generator": "^14.0.1",
     "eslint": "9.x",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "lefthook": "^1.6.18",
     "live-server": "^1.2.2",
     "prettier": "^3.3.2",
-    "rollup": "^4.18.0"
+    "rollup": "^4.18.0",
+    "semantic-release": "^24.0.0"
   }
 }
