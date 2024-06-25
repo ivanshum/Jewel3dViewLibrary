@@ -1,7 +1,7 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { terser } from '@rollup/plugin-terser';
+import terser from '@rollup/plugin-terser';
 import babel from '@rollup/plugin-babel';
-import pkg from './package.json';
+import pkg from './package.json' with { type: 'json' };
 const input = ['src/index.js'];
 export default [
   {

@@ -14,6 +14,6 @@ export default [
   eslintConfigPrettier,
   eslintPluginPrettierRecommended,
   {
-    ignores: ['.yarn/'],
+    ignores: ['.yarn/', 'rollup.config.js'],
   },
 ];
