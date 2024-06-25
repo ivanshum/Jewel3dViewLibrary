@@ -1,1 +1,1 @@
-export { default } from './helloj3vl';
+export { helloj3vl } from './helloj3vl';

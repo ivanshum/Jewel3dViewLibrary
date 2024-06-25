@@ -1,3 +1,4 @@
-export default function helloj3vl() {
+const helloj3vl = () => {
   console.log('Hello to j3vl!');
-}
+};
+export { helloj3vl };
