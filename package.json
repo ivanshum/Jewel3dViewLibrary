@@ -7,19 +7,25 @@
   "private": true,
   "release": {
     "branches": [
-      "main","ivanshum/issue3"
+      "main", {"name": "beta", "prerelease": true}, {"name": "alpha", "prerelease": true}
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
       [
         "@semantic-release/npm",
         {
-          "npmPublish": false
+          "npmPublish": false,
+          "tarballDir": "dist"
         }
       ],
-      "@semantic-release/changelog",
-      "@semantic-release/github"
+      [
+        "@semantic-release/github",
+        {
+          "assets": "dist/*.*"
+        }
+      ]
     ]
   },
   "scripts": {
