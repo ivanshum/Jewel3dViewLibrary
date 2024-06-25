@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "vivaxy.vscode-conventional-commits",
     "arcanis.vscode-zipfs",
-    "joshbolduc.commitlint"
+    "joshbolduc.commitlint",
+    "github.vscode-github-actions"
   ]
 }

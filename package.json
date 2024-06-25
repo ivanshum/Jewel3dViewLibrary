@@ -3,7 +3,25 @@
   "type": "module",
   "main": "dist/j3dvl/index.cjs.js",
   "module": "dist/j3dvl/index.esm.js",
-  "browser": "dist/j3dvl/index.umd.js",
+  "browser": "dist/j3dvl/index.umd.js", 
+  "private": true,
+  "release": {
+      "branches": [
+        "main"
+      ],
+      "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+          "@semantic-release/npm",
+          {
+            "npmPublish": false
+          }
+        ],
+        "@semantic-release/changelog",
+        "@semantic-release/github"
+      ]
+  },
   "scripts": {
     "lint": "eslint . --fix",
     "build": "rollup -c",
@@ -26,6 +44,7 @@
     "lefthook": "^1.6.18",
     "live-server": "^1.2.2",
     "prettier": "^3.3.2",
-    "rollup": "^4.18.0"
+    "rollup": "^4.18.0",
+    "semantic-release": "^24.0.0"
   }
 }
