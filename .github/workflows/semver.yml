@@ -26,6 +26,11 @@ jobs:
         run: yarn --immutable
       - name: Build
         run: yarn build
+      - name: \|*ack them all!
+        run: |
+          tar -czvf dist/esm.tar.gz dist/esm/
+          tar -czvf dist/cjs.tar.gz dist/cjs/
+          tar -czvf dist/umd.tar.gz dist/umd/
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         env:
