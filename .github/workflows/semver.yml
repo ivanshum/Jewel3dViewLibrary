@@ -4,6 +4,8 @@ on:
     branches:
       # Change this if your primary branch is not main
       - main
+permissions:
+  contents: write
 
 jobs:
   main:
