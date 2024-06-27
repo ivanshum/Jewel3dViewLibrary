@@ -15,7 +15,7 @@ export default [
       terser(),
     ],
     output: {
-      file: `dist/${pkg.name}.min.js`,
+      file: `dist/umd/${pkg.name}.min.js`,
       format: 'umd',
       name: 'j3vl', // this is the name of the global object
       esModule: false,
