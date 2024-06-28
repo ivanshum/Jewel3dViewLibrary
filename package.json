@@ -1,10 +1,29 @@
 {
-  "name": "jewel-3d-view-library",
+  "name": "@hilight-agency/jewel-3d-view-library",
   "type": "module",
+  "author": {
+    "email": "ivanshummi@gmail.com",
+    "name": "Ivan Shumilov",
+    "url": "https://github.com/hilight-agency/Jewel3dViewLibrary"
+  },
+  "version": "1.0.0",
   "main": "dist/j3dvl/index.cjs.js",
   "module": "dist/j3dvl/index.esm.js",
   "browser": "dist/j3dvl/index.umd.js",
+  "repository": {
+    "url": "https://github.com/hilight-agency/Jewel3dViewLibrary.git"
+  },
   "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "lint": "eslint . --fix",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "htmltest": "yarn live-server ./ --entry-file=/htmltest/index.html"
+  },
+  "packageManager": "yarn@4.3.1",
   "release": {
     "branches": [
       "main",
@@ -29,25 +48,22 @@
       [
         "@semantic-release/npm",
         {
-          "npmPublish": false,
-          "tarballDir": "dist"
+          "npmPublish": false
         }
       ],
       [
         "@semantic-release/github",
         {
-          "assets": "dist/*.tar.gz"
+          "assets": [
+            "dist/esm.tar.gz",
+            "dist/cjs.tar.gz",
+            "dist/umd.tar.gz",
+            "CHANGELOG.md"
+          ]
         }
       ]
     ]
   },
-  "scripts": {
-    "lint": "eslint . --fix",
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "htmltest": "yarn live-server ./ --entry-file=/htmltest/index.html"
-  },
-  "packageManager": "yarn@4.3.1",
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
