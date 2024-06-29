@@ -21,7 +21,7 @@
     "lint": "eslint . --fix",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "htmltest": "yarn live-server ./ --entry-file=/htmltest/index.html"
+    "htmltest": "yarn dlx live-server ./ --entry-file=/htmltest/index.html"
   },
   "packageManager": "yarn@4.3.1",
   "release": {
@@ -80,7 +80,6 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "lefthook": "^1.6.18",
-    "live-server": "^1.2.2",
     "prettier": "^3.3.2",
     "rollup": "^4.18.0",
     "semantic-release": "^24.0.0"
