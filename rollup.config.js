@@ -1,8 +1,13 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import babel from '@rollup/plugin-babel';
+import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json' with { type: 'json' };
+
 const input = ['src/index.js'];
+const devMode = process.env.NODE_ENV === 'development';
+
 export default [
   {
     // UMD
@@ -10,9 +15,16 @@ export default [
     plugins: [
       nodeResolve(),
       babel({
+        exclude: '.yarn/**',
         babelHelpers: 'bundled',
+        presets: ['@babel/preset-react'],
       }),
+      commonjs(),
       terser(),
+      replace({
+        preventAssignment: true,
+        'process.env.NODE_ENV': JSON.stringify('development'),
+      }),
     ],
     output: {
       file: `dist/umd/${pkg.name}.min.js`,
@@ -26,7 +38,19 @@ export default [
   // ESM and CJS
   {
     input,
-    plugins: [nodeResolve()],
+    plugins: [
+      nodeResolve(),
+      babel({
+        exclude: '.yarn/**',
+        babelHelpers: 'bundled',
+        presets: ['@babel/preset-react'],
+      }),
+      commonjs(),
+      replace({
+        preventAssignment: true,
+        'process.env.NODE_ENV': JSON.stringify('development'),
+      }),
+    ],
     output: [
       {
         dir: 'dist/esm',
