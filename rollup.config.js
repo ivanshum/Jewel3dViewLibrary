@@ -10,7 +10,9 @@ const input = ['src/index.js'];
 const devMode = (process.env.NODE_ENV || 'development').toLowerCase();
 
 const sharedPlugins = [
-  nodeResolve(),
+  nodeResolve({
+    preferBuiltins: true,
+  }),
   babel({
     exclude: '.yarn/**',
     babelHelpers: 'bundled',
@@ -39,15 +41,26 @@ const outputs = [
     esModule: false,
     exports: 'named',
     sourcemap: true,
+    globals: {
+      react: 'React',
+      'react-dom/client': 'ReactDOM',
+      '@react-three/fiber': 'fiber',
+      '@react-three/drei': 'drei',
+      postprocessing: 'postprocessing',
+      three: 'three',
+      '@react-three/postprocessing': 'three-postprocessing',
+    },
   },
   {
     dir: 'dist/esm',
+    name: 'j3vlesm',
     format: 'esm',
     exports: 'named',
     sourcemap: true,
   },
   {
     dir: 'dist/cjs',
+    name: 'j3vlcjs',
     format: 'cjs',
     exports: 'named',
     sourcemap: true,
@@ -62,7 +75,7 @@ outputs.forEach((output) => {
     plugins: [
       ...sharedPlugins,
       output.name && terser(),
-      output.name === 'j3vlExt' && nodeExternals(),
+      output.name !== 'j3vlFull' && nodeExternals(),
     ],
     output: output,
   });
