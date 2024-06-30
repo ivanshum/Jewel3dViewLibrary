@@ -21,7 +21,7 @@
     "lint": "eslint . --fix",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "htmltest": "yarn dlx live-server ./ --entry-file=/htmltest/index.html"
+    "htmltest": "yarn build && yarn dlx live-server ./ --entry-file=/htmltest/index.html"
   },
   "packageManager": "yarn@4.3.1",
   "release": {
@@ -58,6 +58,7 @@
             "dist/esm.tar.gz",
             "dist/cjs.tar.gz",
             "dist/umd.tar.gz",
+            "dist/umd-ext.tar.gz",
             "CHANGELOG.md"
           ]
         }
@@ -67,11 +68,14 @@
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@eslint/compat": "^1.1.0",
     "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.4.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.0",
@@ -79,9 +83,15 @@
     "eslint": "9.x",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.3",
     "lefthook": "^1.6.18",
     "prettier": "^3.3.2",
     "rollup": "^4.18.0",
+    "rollup-plugin-node-externals": "^7.1.2",
     "semantic-release": "^24.0.0"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

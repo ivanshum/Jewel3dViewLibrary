@@ -1,4 +1,7 @@
-const helloj3vl = () => {
-  console.log('Hello to j3vl!');
-};
-export { helloj3vl };
+import React from 'react';
+
+function Helloj3vl() {
+  return <h1>Hello from React!</h1>;
+}
+
+export { Helloj3vl };
