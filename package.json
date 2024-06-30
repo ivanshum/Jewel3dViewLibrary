@@ -58,6 +58,7 @@
             "dist/esm.tar.gz",
             "dist/cjs.tar.gz",
             "dist/umd.tar.gz",
+            "dist/umd-ext.tar.gz",
             "CHANGELOG.md"
           ]
         }

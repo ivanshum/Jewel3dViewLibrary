@@ -31,27 +31,10 @@ jobs:
           tar -czvf dist/esm.tar.gz dist/esm/
           tar -czvf dist/cjs.tar.gz dist/cjs/
           tar -czvf dist/umd.tar.gz dist/umd/
-  build2:
-    if: false
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Install Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-      - name: Install
-        run: yarn --immutable
-      - name: Build
-        run: yarn build
-      - name: \|*ack them all!
-        run: tar -czvf dist/esm.tar.gz dist/esm/
+          tar -czvf dist/umd-ext.tar.gz dist/umd-ext/
+
   release:
-    needs: [build1] #, build2]
+    needs: [build1]
     runs-on: ubuntu-latest
     steps:
       - name: Semantic Release
