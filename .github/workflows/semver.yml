@@ -32,11 +32,24 @@ jobs:
           tar -czvf dist/cjs.tar.gz dist/cjs/
           tar -czvf dist/umd.tar.gz dist/umd/
           tar -czvf dist/umd-ext.tar.gz dist/umd-ext/
-
+      - name: Upload production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*.tar.gz
+          compression-level: 0
+          retention-days: 1
   release:
     needs: [build1]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download production artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         env:
