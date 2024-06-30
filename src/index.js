@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Helloj3vl } from './helloj3vl';
+import { Viewer3d } from './3dviewer.js';
 
 function init() {
   const domNode = document.getElementById('app');
   const root = ReactDOM.createRoot(domNode);
-  root.render(<Helloj3vl />);
+  root.render(<Viewer3d />);
 }
 
 export { init };

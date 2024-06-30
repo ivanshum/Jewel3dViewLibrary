@@ -10,15 +10,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, '.gitignore');
 // Begin fix
-react.configs.recommended.plugins = { react };
-react.configs.recommended.languageOptions = {
-  parserOptions: react.configs.recommended.parserOptions,
+react.configs['jsx-runtime'].plugins = { react };
+react.configs['jsx-runtime'].languageOptions = {
+  parserOptions: react.configs['jsx-runtime'].parserOptions,
 };
-delete react.configs.recommended.parserOptions;
+delete react.configs['jsx-runtime'].parserOptions;
 // End fix
 export default [
   includeIgnoreFile(gitignorePath),
-  react.configs.recommended,
+  react.configs['jsx-runtime'],
   eslintConfigPrettier,
   eslintPluginPrettierRecommended,
   {
