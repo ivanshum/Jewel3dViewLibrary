@@ -15,8 +15,7 @@ import {
   EffectComposer,
   Vignette,
 } from '@react-three/postprocessing';
-import { Color } from 'three';
-
+import { Color, MeshStandardMaterial } from 'three';
 function Gems(props) {
   const ref = React.useRef();
   const texture = useCubeTexture(
@@ -24,17 +23,7 @@ function Gems(props) {
     { path: 'htmltest/3d/gemmap/' },
   );
   const { nodes } = useGLTF('/htmltest/3d/gem.glb');
-  const getValues = (color) => {
-    switch (color) {
-      case `Emerald`:
-        return { color: '#0ca570', iord: 0.3 };
-      case `Sapphire`:
-        return { color: '#025c98', iord: 0.1 };
-      default:
-        return { color: '#fff', iord: 0 };
-    }
-  };
-  const values = getValues(props.color);
+  const values = props.color.split('/');
   return (
     <group ref={ref} rotation={[-Math.PI / 2, 0, 0]} {...props}>
       <mesh
@@ -48,8 +37,8 @@ function Gems(props) {
           envMap={texture}
           bounces={2}
           aberrationStrength={0}
-          ior={2.4 - values.iord}
-          color={values.color}
+          ior={parseFloat(values[1])}
+          color={values[0]}
           fastChroma
         />
       </mesh>
@@ -57,39 +46,48 @@ function Gems(props) {
   );
 }
 
+function MyMesh({ color, geometry, material }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (ref.current) {
+      // Clone the material to avoid modifying the original
+      const updatedMaterial = new MeshStandardMaterial();
+      updatedMaterial.copy(material);
+      updatedMaterial.setValues({ color: new Color(color) });
+      ref.current.material = updatedMaterial;
+    }
+  }, [color]);
+  return (
+    <mesh
+      ref={ref}
+      castShadow
+      receiveShadow
+      geometry={geometry}
+      material={material}
+    />
+  );
+}
+
 function Model(props) {
   const { nodes, materials } = useGLTF('/htmltest/3d/met.glb');
-  switch (props.color) {
-    case `Gold`:
-      materials['Silver Polished #1'].color = new Color('#fceaa9');
-      break;
-    case `Pink`:
-      materials['Silver Polished #1'].color = new Color('#ffded4');
-      break;
-    default:
-      materials['Silver Polished #1'].color = new Color('#fff');
-      break;
-  }
   return (
     <group {...props} dispose={null}>
       <group scale={0.001}>
         <group rotation={[-Math.PI / 2, 0, 0]}>
-          <mesh
-            castShadow
-            receiveShadow
+          <MyMesh
             geometry={
               nodes['COLOR=�,MATERIAL=��(17C38827-CF04-41A3-BD5C-83A1DBCE0B94)']
                 .geometry
             }
             material={materials['Silver Polished #1']}
+            color={props.color}
           />
-          <mesh
-            castShadow
-            receiveShadow
+          <MyMesh
             geometry={
               nodes['Layer_01(D0460141-C391-4238-B6C5-F8AD57FB3D13)'].geometry
             }
             material={materials['Silver Polished #1']}
+            color={props.color}
           />
         </group>
       </group>
@@ -114,24 +112,24 @@ const Switcher = ({ values, label, active, handler }) => {
           <button
             type="button"
             className={`${baseclass} border ${
-              val === active ? activeclass : `bg-transparent`
+              val.value === active.value ? activeclass : `bg-transparent`
             }`}
             onClick={(e) => handler(e.target.value)}
-            key={val}
-            value={val}
+            key={'' + val.name + val.value}
+            value={val.value}
           >
-            {val}
+            {val.name}
           </button>
         );
       })}
     </div>
   );
 };
-function Viewer3d() {
-  const [activeMetal, setActiveMetal] = React.useState(`Silver`);
-  const [activeGem, setActiveGem] = React.useState(`Diamond`);
-  const metals = [`Silver`, `Gold`, `Pink`];
-  const gems = [`Diamond`, `Emerald`, `Sapphire`];
+function Viewer3d({ config }) {
+  const [activeMetal, setActiveMetal] = React.useState(config.metals[1].value);
+  const [activeGem, setActiveGem] = React.useState(config.gems[0].value);
+  const metals = config.metals; //[`Silver`, `Gold`, `Pink`];
+  const gems = config.gems; //[`Diamond`, `Emerald`, `Sapphire`];
   function Loader() {
     const { progress } = useProgress();
     return <Html center>{progress} % loaded</Html>;
