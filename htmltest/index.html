@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Lib Test</title>
-        <script src="../dist/umd/@hilight-agency/jewel-3d-view-library.min.js"></script>
-    </head>
-    <body>
-        <h1>Test file full</h1>
-        <div id="app"></div>
-        <script>j3vlFull.init({
-            metals:[{
+<!--             metals:[{
                 name:'Silver',
                 value:'#fff'
             },{
@@ -28,6 +18,41 @@
                 name:'Sapphire',
                 value:'#025c98/2.3'
             }]
-        })</script>
+             -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lib Test</title>
+        <script src="../dist/umd/@hilight-agency/jewel-3d-view-library.min.js"></script>
+        <style>
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr; 
+                grid-template-rows: 1fr 1fr; 
+                gap: 10px; 
+                width: 100%; 
+                height: calc(100vh - 20px);
+            }
+            .layer {
+                border: 1px dotted black;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid">
+            <div id="app1" class="layer"></div>
+            <div id="app2" class="layer"></div>
+            <div id="app3" class="layer"></div>
+            <div id="app4" class="layer"></div>
+        </div>
+        <script>
+            j3vlFull.init(['#fff', '#fff/2.4'],"app1")<
+            j3vlFull.init(['#fceaa9', '#025c98/2.3'],"app2")
+            j3vlFull.init(['#fff', '#0ca570/2.1'],"app3")
+            j3vlFull.init(['#ffded4', '#fff/2.4'],"app4")
+        </script>
     </body>
 </html>
