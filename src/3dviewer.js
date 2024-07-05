@@ -103,15 +103,9 @@ function Model(props) {
 useGLTF.preload('/htmltest/3d/met.glb');
 useGLTF.preload('/htmltest/3d/gem.glb');
 
-function Viewer3d({ storePrefix, defaultValues, classNames = '' }) {
-  const [metalState, metalStateSet] = useMyStore(
-    `${storePrefix}Metal`,
-    defaultValues[0],
-  );
-  const [gemState, gemStateSet] = useMyStore(
-    `${storePrefix}Gem`,
-    defaultValues[1],
-  );
+function Viewer3d({ storePrefix, defaultValues, classNames }) {
+  const metalState = useMyStore(`${storePrefix}Metal`, defaultValues[0]);
+  const gemState = useMyStore(`${storePrefix}Gem`, defaultValues[1]);
   function Loader() {
     const { progress } = useProgress();
     return <Html center>{progress} % loaded</Html>;

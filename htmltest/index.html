@@ -40,19 +40,49 @@
                 height: 100%;
             }
         </style>
+        <script type="text/javascript">
+            function RandomColor(isgem) {
+                let randomcolor
+                while (randomcolor?.length!==6) {
+                    randomcolor = Math.floor(Math.random()*16777215).toString(16)
+                }                
+                const randomior = (2.0+Math.random()*0.4).toFixed(2);
+                return `#${randomcolor}${isgem?`/${randomior}`:``}` 
+            }
+            let j3vlconfig = [
+                [['#fff', '#fff/2.4'],"app1",'layer'],
+                [['#fceaa9', '#025c98/2.3'],"app2",'layer'],
+                [['#fff', '#0ca570/2.1'],"app3",'layer'],
+                [['#ffded4', '#fff/2.4'],"app4",'layer']
+            ]
+        </script>
     </head>
     <body>
         <div class="grid">
-            <div id="app1" class="layer"></div>
-            <div id="app2" class="layer"></div>
-            <div id="app3" class="layer"></div>
-            <div id="app4" class="layer"></div>
+            <div>
+                <div id="app1"></div>
+                <button onclick="j3vlFull.setState('app1','Gem',RandomColor(true))">Change Gem color</button>
+                <button onclick="j3vlFull.setState('app1','Metal',RandomColor())">Change Metal color</button>
+            </div>
+            <div>
+                <div id="app2"></div>
+                <button onclick="j3vlFull.setState('app2','Gem',RandomColor(true))">Change Gem color</button>
+                <button onclick="j3vlFull.setState('app2','Metal',RandomColor())">Change Metal color</button>
+            </div>
+            <div>
+                <div id="app3"></div>
+                <button onclick="j3vlFull.setState('app3','Gem',RandomColor(true))">Change Gem color</button>
+                <button onclick="j3vlFull.setState('app3','Metal',RandomColor())">Change Metal color</button>
+            </div>
+            <div>
+                <div id="app4"></div>
+                <button onclick="j3vlFull.setState('app4','Gem',RandomColor(true))">Change Gem color</button>
+                <button onclick="j3vlFull.setState('app4','Metal',RandomColor())">Change Metal color</button>
+            </div>
         </div>
         <script>
-            j3vlFull.init(['#fff', '#fff/2.4'],"app1")<
-            j3vlFull.init(['#fceaa9', '#025c98/2.3'],"app2")
-            j3vlFull.init(['#fff', '#0ca570/2.1'],"app3")
-            j3vlFull.init(['#ffded4', '#fff/2.4'],"app4")
+            
+            j3vlconfig.forEach(config => j3vlFull.init(...config))
         </script>
     </body>
 </html>

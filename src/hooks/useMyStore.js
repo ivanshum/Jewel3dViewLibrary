@@ -21,12 +21,7 @@ function useMyStore(key, defaultValue) {
     return unsubscribe;
   }, [key, defaultValue]);
 
-  const setSidebarState = (newValue) => {
-    window.sessionStorage.setItem(key, newValue);
-    window.dispatchEvent(new StorageEvent('storage', { key, newValue }));
-  };
-
-  return [store, setSidebarState];
+  return store;
 }
 
 export { useMyStore };
