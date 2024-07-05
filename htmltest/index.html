@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Lib Test</title>
-        <script src="../dist/umd/@hilight-agency/jewel-3d-view-library.min.js"></script>
-    </head>
-    <body>
-        <h1>Test file full</h1>
-        <div id="app"></div>
-        <script>j3vlFull.init({
-            metals:[{
+<!--             metals:[{
                 name:'Silver',
                 value:'#fff'
             },{
@@ -28,6 +18,71 @@
                 name:'Sapphire',
                 value:'#025c98/2.3'
             }]
-        })</script>
+             -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lib Test</title>
+        <script src="../dist/umd/@hilight-agency/jewel-3d-view-library.min.js"></script>
+        <style>
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr; 
+                grid-template-rows: 1fr 1fr; 
+                gap: 10px; 
+                width: 100%; 
+                height: calc(100vh - 20px);
+            }
+            .layer {
+                border: 1px dotted black;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <script type="text/javascript">
+            function RandomColor(isgem) {
+                let randomcolor
+                while (randomcolor?.length!==6) {
+                    randomcolor = Math.floor(Math.random()*16777215).toString(16)
+                }                
+                const randomior = (2.0+Math.random()*0.4).toFixed(2);
+                return `#${randomcolor}${isgem?`/${randomior}`:``}` 
+            }
+            let j3vlconfig = [
+                [['#fff', '#fff/2.4'],"app1",'layer'],
+                [['#fceaa9', '#025c98/2.3'],"app2",'layer'],
+                [['#fff', '#0ca570/2.1'],"app3",'layer'],
+                [['#ffded4', '#fff/2.4'],"app4",'layer']
+            ]
+        </script>
+    </head>
+    <body>
+        <div class="grid">
+            <div>
+                <div id="app1"></div>
+                <button onclick="j3vlFull.setState('app1','Gem',RandomColor(true))">Change Gem color</button>
+                <button onclick="j3vlFull.setState('app1','Metal',RandomColor())">Change Metal color</button>
+            </div>
+            <div>
+                <div id="app2"></div>
+                <button onclick="j3vlFull.setState('app2','Gem',RandomColor(true))">Change Gem color</button>
+                <button onclick="j3vlFull.setState('app2','Metal',RandomColor())">Change Metal color</button>
+            </div>
+            <div>
+                <div id="app3"></div>
+                <button onclick="j3vlFull.setState('app3','Gem',RandomColor(true))">Change Gem color</button>
+                <button onclick="j3vlFull.setState('app3','Metal',RandomColor())">Change Metal color</button>
+            </div>
+            <div>
+                <div id="app4"></div>
+                <button onclick="j3vlFull.setState('app4','Gem',RandomColor(true))">Change Gem color</button>
+                <button onclick="j3vlFull.setState('app4','Metal',RandomColor())">Change Metal color</button>
+            </div>
+        </div>
+        <script>
+            
+            j3vlconfig.forEach(config => j3vlFull.init(...config))
+        </script>
     </body>
 </html>
