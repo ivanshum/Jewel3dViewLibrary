@@ -86,7 +86,7 @@
     "eslint-plugin-react": "^7.34.3",
     "lefthook": "^1.6.18",
     "prettier": "^3.3.2",
-    "rollup": "^4.18.0",
+    "rollup": "^4.19.0",
     "rollup-plugin-node-externals": "^7.1.2",
     "semantic-release": "^24.0.0"
   },
