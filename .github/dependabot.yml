@@ -10,7 +10,14 @@ updates:
     schedule:
       interval: "weekly"
 
-  # Maintain dependencies for npm
+  # Maintain dependencies for beta branch daily npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    target-branch: "beta"
+
+  # Maintain dependencies for main branch weekly npm
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
