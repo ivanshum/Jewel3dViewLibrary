@@ -88,7 +88,7 @@
     "prettier": "^3.3.3",
     "rollup": "^4.21.2",
     "rollup-plugin-node-externals": "^7.1.2",
-    "semantic-release": "^24.0.0"
+    "semantic-release": "^24.1.2"
   },
   "dependencies": {
     "react": "^18.3.1",
